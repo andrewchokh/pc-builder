@@ -1,14 +1,14 @@
 package com.andrewchokh.pcbuilder.persistence.entity.motherboard;
 
-import com.andrewchokh.pcbuilder.persistence.entity.enums.FormFactor;
+import com.andrewchokh.pcbuilder.persistence.entity.enums.MotherboardFormFactor;
 import com.andrewchokh.pcbuilder.persistence.entity.enums.Chipset;
 import com.andrewchokh.pcbuilder.persistence.entity.enums.Socket;
 import com.andrewchokh.pcbuilder.persistence.entity.processor.Processor;
-import com.andrewchokh.pcbuilder.persistence.entity.CoolingDevice;
+import com.andrewchokh.pcbuilder.persistence.entity.coolingdevice.CoolingDevice;
 import com.andrewchokh.pcbuilder.persistence.entity.ram.Ram;
 import com.andrewchokh.pcbuilder.persistence.entity.drive.Drive;
-import com.andrewchokh.pcbuilder.persistence.entity.VideoCard;
-import com.andrewchokh.pcbuilder.persistence.entity.AudioCard;
+import com.andrewchokh.pcbuilder.persistence.entity.videocard.VideoCard;
+import com.andrewchokh.pcbuilder.persistence.entity.audiocard.AudioCard;
 
 import java.util.List;
 
@@ -16,12 +16,12 @@ public class Motherboard {
 
     private final int id;
     private final String name;
-    private final FormFactor formFactor;
+    private final MotherboardFormFactor formFactor;
     private final int ramSlotsAmount;
-    private final boolean m2Connector;
+    private final int m2ConnectorAmount;
     private final Chipset chipset;
     private final Socket socket;
-    private final String manufacturer;
+    private final String brand;
 
     // Primary components for mb
     private final Processor processor;
@@ -33,17 +33,17 @@ public class Motherboard {
     private final VideoCard videoCard;
     private final AudioCard audioCard;
 
-    Motherboard(int id, String name, FormFactor formFactor, int ramSlotsAmount, boolean m2Connector, Chipset chipset,
-                Socket socket, String manufacturer, Processor processor, CoolingDevice coolingDevice, List<Ram> rams,
+    Motherboard(int id, String name, MotherboardFormFactor formFactor, int ramSlotsAmount, int m2ConnectorAmount, Chipset chipset,
+                Socket socket, String brand, Processor processor, CoolingDevice coolingDevice, List<Ram> rams,
                 List<Drive> drives, VideoCard videoCard, AudioCard audioCard) {
         this.id = id;
         this.name = name;
         this.formFactor = formFactor;
         this.ramSlotsAmount = ramSlotsAmount;
-        this.m2Connector = m2Connector;
+        this.m2ConnectorAmount = m2ConnectorAmount;
         this.chipset = chipset;
         this.socket = socket;
-        this.manufacturer = manufacturer;
+        this.brand = brand;
         this.processor = processor;
         this.coolingDevice = coolingDevice;
         this.rams = rams;
@@ -59,7 +59,7 @@ public class Motherboard {
         return this.name;
     }
 
-    public FormFactor getFormFactor() {
+    public MotherboardFormFactor getFormFactor() {
         return this.formFactor;
     }
 
@@ -67,8 +67,8 @@ public class Motherboard {
         return this.ramSlotsAmount;
     }
 
-    public boolean getM2Connector() {
-        return this.m2Connector;
+    public int getM2ConnectorAmount() {
+        return this.m2ConnectorAmount;
     }
 
     public Chipset getChipset() {
@@ -79,8 +79,8 @@ public class Motherboard {
         return this.socket;
     }
 
-    public String getManufacturer() {
-        return this.manufacturer;
+    public String getBrand() {
+        return this.brand;
     }
 
     public Processor getProcessor() {

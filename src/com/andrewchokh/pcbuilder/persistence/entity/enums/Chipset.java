@@ -1,8 +1,9 @@
 package com.andrewchokh.pcbuilder.persistence.entity.enums;
 
 public enum Chipset {
-    AMD_B550("AMD B550"),
-    LGA1700("LGA1700");
+    AMDB550("AMD B550"),
+    AMDB650("AMD B650"),
+    IntelB660("Intel B660");
 
     private final String chipset;
 

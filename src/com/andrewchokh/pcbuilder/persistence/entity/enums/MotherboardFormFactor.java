@@ -1,12 +1,12 @@
 package com.andrewchokh.pcbuilder.persistence.entity.enums;
 
-public enum FormFactor {
+public enum MotherboardFormFactor {
     microATX("microATX"),
     ATX("ATX");
 
     private final String formFactor;
 
-    FormFactor(String formFactor) {
+    MotherboardFormFactor(String formFactor) {
         this.formFactor = formFactor;
     }
 

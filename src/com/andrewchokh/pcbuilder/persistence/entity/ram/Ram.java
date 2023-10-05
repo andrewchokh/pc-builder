@@ -8,13 +8,15 @@ public class Ram {
     private final RamType type;
     private final int memoryAmount;
     private final int frequency;
+    private final String brand;
 
-    Ram(int id, String name, RamType type, int memoryAmount, int frequency) {
+    Ram(int id, String name, RamType type, int memoryAmount, int frequency, String brand) {
         this.id = id;
         this.name = name;
         this.type = type;
         this.memoryAmount = memoryAmount;
         this.frequency = frequency;
+        this.brand = brand;
     }
 
     public int getId() {
@@ -35,5 +37,9 @@ public class Ram {
 
     public int getFrequency() {
         return this.frequency;
+    }
+
+    public String getBrand() {
+        return this.brand;
     }
 }

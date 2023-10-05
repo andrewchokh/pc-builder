@@ -1,14 +1,14 @@
 package com.andrewchokh.pcbuilder.persistence.entity.motherboard;
 
-import com.andrewchokh.pcbuilder.persistence.entity.enums.FormFactor;
+import com.andrewchokh.pcbuilder.persistence.entity.enums.MotherboardFormFactor;
 import com.andrewchokh.pcbuilder.persistence.entity.enums.Chipset;
 import com.andrewchokh.pcbuilder.persistence.entity.enums.Socket;
 import com.andrewchokh.pcbuilder.persistence.entity.processor.Processor;
-import com.andrewchokh.pcbuilder.persistence.entity.CoolingDevice;
+import com.andrewchokh.pcbuilder.persistence.entity.coolingdevice.CoolingDevice;
 import com.andrewchokh.pcbuilder.persistence.entity.ram.Ram;
 import com.andrewchokh.pcbuilder.persistence.entity.drive.Drive;
-import com.andrewchokh.pcbuilder.persistence.entity.VideoCard;
-import com.andrewchokh.pcbuilder.persistence.entity.AudioCard;
+import com.andrewchokh.pcbuilder.persistence.entity.videocard.VideoCard;
+import com.andrewchokh.pcbuilder.persistence.entity.audiocard.AudioCard;
 
 import java.util.List;
 
@@ -16,13 +16,13 @@ public class MotherboardBuilder {
 
     private int id;
     private String name;
-    private FormFactor formFactor;
+    private MotherboardFormFactor formFactor;
     private int ramSlotsAmount;
-    private boolean m2Connector;
+    private int m2ConnectorAmount;
     private Chipset chipset;
 
     private Socket socket;
-    private String manufacturer;
+    private String brand;
 
     // Primary components for mb
     private Processor processor;
@@ -43,7 +43,7 @@ public class MotherboardBuilder {
         return this;
     }
 
-    public MotherboardBuilder FormFactor(final FormFactor formFactor) {
+    public MotherboardBuilder FormFactor(final MotherboardFormFactor formFactor) {
         this.formFactor = formFactor;
         return this;
     }
@@ -53,8 +53,8 @@ public class MotherboardBuilder {
         return this;
     }
 
-    public MotherboardBuilder M2Connector(final boolean m2Connector) {
-        this.m2Connector = m2Connector;
+    public MotherboardBuilder M2ConnectorAmount(final int m2ConnectorAmount) {
+        this.m2ConnectorAmount = m2ConnectorAmount;
         return this;
     }
 
@@ -68,8 +68,8 @@ public class MotherboardBuilder {
         return this;
     }
 
-    public MotherboardBuilder Manufacturer(final String manufacturer) {
-        this.manufacturer = manufacturer;
+    public MotherboardBuilder Brand(final String brand) {
+        this.brand = brand;
         return this;
     }
 
@@ -104,7 +104,7 @@ public class MotherboardBuilder {
     }
 
     public Motherboard build() {
-        return new Motherboard(id, name, formFactor, ramSlotsAmount, m2Connector, chipset, socket, manufacturer, processor,
+        return new Motherboard(id, name, formFactor, ramSlotsAmount, m2ConnectorAmount, chipset, socket, brand, processor,
                 coolingDevice, rams, drives, videoCard, audioCard);
     }
 }

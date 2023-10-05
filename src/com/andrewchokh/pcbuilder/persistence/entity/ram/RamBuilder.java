@@ -8,6 +8,7 @@ public class RamBuilder {
     private RamType type;
     private int memoryAmount;
     private int frequency;
+    private String brand;
 
     public RamBuilder Id(final int id) {
         this.id = id;
@@ -34,7 +35,12 @@ public class RamBuilder {
         return this;
     }
 
+    public RamBuilder Brand(final String brand) {
+        this.brand = brand;
+        return this;
+    }
+
     public Ram build() {
-        return new Ram(id, name, type, memoryAmount, frequency);
+        return new Ram(id, name, type, memoryAmount, frequency, brand);
     }
 }
