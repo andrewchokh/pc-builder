@@ -1,8 +1,21 @@
 package com.andrewchokh.pcbuilder.persistence.entity.drive;
 
-public class SSD extends Drive{
-    SSD(int id, String name){
+import com.andrewchokh.pcbuilder.persistence.entity.enums.DriveFormFactor;
+
+public class SSD extends Drive {
+    private final boolean NVMeSupport;
+
+    SSD(int id, String name, DriveFormFactor formFactor, int memoryAmount, int readingSpeed, int writingSpeed, boolean NVMeSupport) {
         this.id = id;
         this.name = name;
+        this.formFactor = formFactor;
+        this.memoryAmount = memoryAmount;
+        this.readingSpeed = readingSpeed;
+        this.writingSpeed = writingSpeed;
+        this.NVMeSupport = NVMeSupport;
+    }
+
+    public boolean getNVMeSupport() {
+        return this.NVMeSupport;
     }
 }
