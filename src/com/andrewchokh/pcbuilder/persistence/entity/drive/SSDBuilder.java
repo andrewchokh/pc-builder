@@ -2,7 +2,7 @@ package com.andrewchokh.pcbuilder.persistence.entity.drive;
 
 import com.andrewchokh.pcbuilder.persistence.entity.enums.DriveFormFactor;
 
-public class SSDBuilder implements DriveBuildMethods {
+public class SSDBuilder implements DriveBuildTemplate {
     private int id;
     private String name;
     private DriveFormFactor formFactor;
@@ -35,13 +35,11 @@ public class SSDBuilder implements DriveBuildMethods {
         return this;
     }
 
-    @Override
     public SSDBuilder ReadingSpeed(final int readingSpeed) {
         this.readingSpeed = readingSpeed;
         return this;
     }
 
-    @Override
     public SSDBuilder WritingSpeed(final int writingSpeed) {
         this.writingSpeed = writingSpeed;
         return this;

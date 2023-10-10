@@ -2,13 +2,12 @@ package com.andrewchokh.pcbuilder.persistence.entity.drive;
 
 import com.andrewchokh.pcbuilder.persistence.entity.enums.DriveFormFactor;
 
-public class HDDBuilder implements DriveBuildMethods {
+public class HDDBuilder implements DriveBuildTemplate {
     private int id;
     private String name;
     private DriveFormFactor formFactor;
     private int memoryAmount; // In GB
-    private int readingSpeed;
-    private int writingSpeed;
+    private int rotationSpeed;
 
     @Override
     public HDDBuilder Id(final int id) {
@@ -34,19 +33,13 @@ public class HDDBuilder implements DriveBuildMethods {
         return this;
     }
 
-    @Override
-    public HDDBuilder ReadingSpeed(final int readingSpeed) {
-        this.readingSpeed = readingSpeed;
+    public HDDBuilder RotationSpeed(final int rotationSpeed) {
+        this.rotationSpeed = rotationSpeed;
         return this;
     }
 
-    @Override
-    public HDDBuilder WritingSpeed(final int writingSpeed) {
-        this.writingSpeed = writingSpeed;
-        return this;
-    }
 
     public HDD build() {
-        return new HDD(id, name, formFactor, memoryAmount, readingSpeed, writingSpeed);
+        return new HDD(id, name, formFactor, memoryAmount, rotationSpeed);
     }
 }
