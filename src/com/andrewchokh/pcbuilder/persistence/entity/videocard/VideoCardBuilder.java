@@ -1,9 +1,12 @@
 package com.andrewchokh.pcbuilder.persistence.entity.videocard;
 
+import com.andrewchokh.pcbuilder.persistence.entity.enums.VideoCardMemoryType;
+
 public class VideoCardBuilder {
     private int id;
     private String name;
     private int memoryAmount;
+    private VideoCardMemoryType memoryType;
     private String brand;
 
     public VideoCardBuilder Id(final int id) {
@@ -20,12 +23,17 @@ public class VideoCardBuilder {
         return this;
     }
 
+    public VideoCardBuilder MemoryType(final VideoCardMemoryType memoryType) {
+        this.memoryType = memoryType;
+        return this;
+    }
+
     public VideoCardBuilder Brand(final String processorFamily) {
         this.brand = brand;
         return this;
     }
 
     public VideoCard build() {
-        return new VideoCard(id, name, memoryAmount, brand);
+        return new VideoCard(id, name, memoryAmount, memoryType, brand);
     }
 }
