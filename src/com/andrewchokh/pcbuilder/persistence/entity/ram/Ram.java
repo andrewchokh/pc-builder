@@ -1,16 +1,16 @@
 package com.andrewchokh.pcbuilder.persistence.entity.ram;
 
-import com.andrewchokh.pcbuilder.persistence.entity.enums.RamType;
+import com.andrewchokh.pcbuilder.persistence.entity.enums.RamMemoryType;
 
 public class Ram {
     private final int id;
     private final String name;
-    private final RamType type;
+    private final RamMemoryType type;
     private final int memoryAmount;
     private final int frequency;
     private final String brand;
 
-    Ram(int id, String name, RamType type, int memoryAmount, int frequency, String brand) {
+    Ram(int id, String name, RamMemoryType type, int memoryAmount, int frequency, String brand) {
         this.id = id;
         this.name = name;
         this.type = type;
@@ -27,7 +27,7 @@ public class Ram {
         return this.name;
     }
 
-    public RamType getType() {
+    public RamMemoryType getType() {
         return this.type;
     }
 
