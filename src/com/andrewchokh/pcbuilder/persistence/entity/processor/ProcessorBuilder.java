@@ -4,15 +4,20 @@ import com.andrewchokh.pcbuilder.persistence.entity.enums.GraphicsProcessor;
 import com.andrewchokh.pcbuilder.persistence.entity.enums.ProcessorLine;
 import com.andrewchokh.pcbuilder.persistence.entity.enums.Socket;
 
+import java.util.Objects;
+import java.util.stream.Stream;
+
 public class ProcessorBuilder {
     private int id;
     private String name;
+    private String brand;
+    private int price;
     private ProcessorLine line;
     private Socket socket;
     private int coreAmount;
     private int flowAmount;
     private int frequency;
-    private String brand;
+
 
     // Secondary components of processor
     private GraphicsProcessor graphicsProcessor;
@@ -24,6 +29,16 @@ public class ProcessorBuilder {
 
     public ProcessorBuilder Name(final String name) {
         this.name = name;
+        return this;
+    }
+
+    public ProcessorBuilder Brand(final String brand) {
+        this.brand = brand;
+        return this;
+    }
+
+    public ProcessorBuilder Price(final int price) {
+        this.price = price;
         return this;
     }
 
@@ -52,17 +67,58 @@ public class ProcessorBuilder {
         return this;
     }
 
-    public ProcessorBuilder Brand(final String brand) {
-        this.brand = brand;
-        return this;
-    }
-
     public ProcessorBuilder GraphicsProcessor(final GraphicsProcessor graphicsProcessor) {
         this.graphicsProcessor = graphicsProcessor;
         return this;
     }
 
+    public int getId() {
+        return this.id;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public String getBrand() {
+        return this.brand;
+    }
+
+    public int getPrice() {
+        return this.price;
+    }
+
+    public ProcessorLine getLine() {
+        return this.line;
+    }
+
+    public Socket getSocket() {
+        return this.socket;
+    }
+
+    public int getCoreAmount() {
+        return this.coreAmount;
+    }
+
+    public int getFlowAmount() {
+        return this.flowAmount;
+    }
+
+    public int getFrequency() {
+        return this.frequency;
+    }
+
+    public GraphicsProcessor getGraphicsProcessor() {
+        return this.graphicsProcessor;
+    }
+
+    public boolean hasAllRequiredFieldsEntered() {
+        return Stream.of(id, name, brand, price, line, socket, coreAmount, flowAmount, frequency)
+                .allMatch(Objects::nonNull);
+    }
+
     public Processor build() {
-        return new Processor(id, name, line, socket, coreAmount, flowAmount, frequency, brand, graphicsProcessor);
+        if (!hasAllRequiredFieldsEntered()) throw new RuntimeException("One or several required fields are null");
+        return new Processor(id, name, brand, price, line, socket, coreAmount, flowAmount, frequency, graphicsProcessor);
     }
 }

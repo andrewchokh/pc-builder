@@ -2,11 +2,10 @@ package com.andrewchokh.pcbuilder.persistence.entity.drive;
 
 import com.andrewchokh.pcbuilder.persistence.entity.enums.DriveFormFactor;
 
-public class SSDBuilder implements DriveBuildTemplate {
-    private int id;
-    private String name;
-    private DriveFormFactor formFactor;
-    private int memoryAmount; // In GB
+import java.util.Objects;
+import java.util.stream.Stream;
+
+public class SSDBuilder extends DriveBuilder {
     private int readingSpeed;
     private int writingSpeed;
     private boolean NVMeSupport;
@@ -20,6 +19,18 @@ public class SSDBuilder implements DriveBuildTemplate {
     @Override
     public SSDBuilder Name(final String name) {
         this.name = name;
+        return this;
+    }
+
+    @Override
+    public SSDBuilder Brand(final String brand) {
+        this.brand = brand;
+        return this;
+    }
+
+    @Override
+    public SSDBuilder Price(final int price) {
+        this.price = price;
         return this;
     }
 
@@ -50,7 +61,24 @@ public class SSDBuilder implements DriveBuildTemplate {
         return this;
     }
 
+    public int getReadingSpeed() {
+        return this.readingSpeed;
+    }
+    public int getWritingSpeed() {
+        return this.writingSpeed;
+    }
+    public boolean getNVMeSupport() {
+        return this.NVMeSupport;
+    }
+
+    public boolean hasAllRequiredFieldsEntered() {
+        return Stream.of(id, name, brand, price, formFactor, memoryAmount, readingSpeed, writingSpeed, NVMeSupport)
+                .allMatch(Objects::nonNull);
+    }
+
+    @Override
     public SSD build() {
-        return new SSD(id, name, formFactor, memoryAmount, readingSpeed, writingSpeed, NVMeSupport);
+        if (!hasAllRequiredFieldsEntered()) throw new RuntimeException("One or several required fields are null");
+        return new SSD(id, name, brand, price, formFactor, memoryAmount, readingSpeed, writingSpeed, NVMeSupport);
     }
 }

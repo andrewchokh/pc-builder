@@ -11,18 +11,20 @@ import com.andrewchokh.pcbuilder.persistence.entity.videocard.VideoCard;
 import com.andrewchokh.pcbuilder.persistence.entity.audiocard.AudioCard;
 
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Stream;
 
 public class MotherboardBuilder {
 
     private int id;
     private String name;
+    private String brand;
+    private int price;
     private MotherboardFormFactor formFactor;
     private int ramSlotsAmount;
     private int m2ConnectorAmount;
     private Chipset chipset;
-
     private Socket socket;
-    private String brand;
 
     // Primary components for mb
     private Processor processor;
@@ -40,6 +42,16 @@ public class MotherboardBuilder {
     }
     public MotherboardBuilder Name(final String name) {
         this.name = name;
+        return this;
+    }
+
+    public MotherboardBuilder Brand(final String brand) {
+        this.brand = brand;
+        return this;
+    }
+
+    public MotherboardBuilder Price(final int price) {
+        this.price = price;
         return this;
     }
 
@@ -65,11 +77,6 @@ public class MotherboardBuilder {
 
     public MotherboardBuilder Socket(final Socket socket) {
         this.socket = socket;
-        return this;
-    }
-
-    public MotherboardBuilder Brand(final String brand) {
-        this.brand = brand;
         return this;
     }
 
@@ -103,8 +110,75 @@ public class MotherboardBuilder {
         return this;
     }
 
+    public int getId() {
+        return this.id;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public String getBrand() {
+        return this.brand;
+    }
+
+    public int getPrice() {
+        return this.price;
+    }
+
+    public MotherboardFormFactor getFormFactor() {
+        return this.formFactor;
+    }
+
+    public int getRamSlotsAmount() {
+        return this.ramSlotsAmount;
+    }
+
+    public int getM2ConnectorAmount() {
+        return this.m2ConnectorAmount;
+    }
+
+    public Chipset getChipset() {
+        return this.chipset;
+    }
+
+    public Socket getSocket() {
+        return this.socket;
+    }
+
+    public Processor getProcessor() {
+        return this.processor;
+    }
+
+    public CoolingDevice getCoolingDevice() {
+        return this.coolingDevice;
+    }
+
+    public List<Ram> getRams() {
+        return this.rams;
+    }
+
+    public List<Drive> getDrives() {
+        return this.drives;
+    }
+
+    public VideoCard getVideoCard() {
+        return this.videoCard;
+    }
+
+    public AudioCard getAudioCard() {
+        return this.audioCard;
+    }
+
+    public boolean hasAllRequiredFieldsEntered() {
+        return Stream.of(id, name, brand, price, formFactor, ramSlotsAmount, m2ConnectorAmount, chipset, socket, processor,
+                coolingDevice, rams, drives)
+                .allMatch(Objects::nonNull);
+    }
+
     public Motherboard build() {
-        return new Motherboard(id, name, formFactor, ramSlotsAmount, m2ConnectorAmount, chipset, socket, brand, processor,
+        if (!hasAllRequiredFieldsEntered()) throw new RuntimeException("One or several required fields are null");
+        return new Motherboard(id, name, brand, price, formFactor, ramSlotsAmount, m2ConnectorAmount, chipset, socket, processor,
                 coolingDevice, rams, drives, videoCard, audioCard);
     }
 }

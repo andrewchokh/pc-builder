@@ -16,12 +16,13 @@ public class Motherboard {
 
     private final int id;
     private final String name;
+    private final String brand;
+    private final int price;
     private final MotherboardFormFactor formFactor;
     private final int ramSlotsAmount;
     private final int m2ConnectorAmount;
     private final Chipset chipset;
     private final Socket socket;
-    private final String brand;
 
     // Primary components for mb
     private final Processor processor;
@@ -33,17 +34,18 @@ public class Motherboard {
     private final VideoCard videoCard;
     private final AudioCard audioCard;
 
-    Motherboard(int id, String name, MotherboardFormFactor formFactor, int ramSlotsAmount, int m2ConnectorAmount, Chipset chipset,
-                Socket socket, String brand, Processor processor, CoolingDevice coolingDevice, List<Ram> rams,
+    Motherboard(int id, String name, String brand, int price, MotherboardFormFactor formFactor, int ramSlotsAmount, int m2ConnectorAmount, Chipset chipset,
+                Socket socket, Processor processor, CoolingDevice coolingDevice, List<Ram> rams,
                 List<Drive> drives, VideoCard videoCard, AudioCard audioCard) {
         this.id = id;
         this.name = name;
+        this.brand = brand;
+        this.price = price;
         this.formFactor = formFactor;
         this.ramSlotsAmount = ramSlotsAmount;
         this.m2ConnectorAmount = m2ConnectorAmount;
         this.chipset = chipset;
         this.socket = socket;
-        this.brand = brand;
         this.processor = processor;
         this.coolingDevice = coolingDevice;
         this.rams = rams;
@@ -55,8 +57,13 @@ public class Motherboard {
     public int getId() {
         return this.id;
     }
+
     public String getName() {
         return this.name;
+    }
+
+    public String getBrand() {
+        return this.brand;
     }
 
     public MotherboardFormFactor getFormFactor() {
@@ -77,10 +84,6 @@ public class Motherboard {
 
     public Socket getSocket() {
         return this.socket;
-    }
-
-    public String getBrand() {
-        return this.brand;
     }
 
     public Processor getProcessor() {

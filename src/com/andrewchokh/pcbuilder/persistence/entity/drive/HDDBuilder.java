@@ -2,11 +2,10 @@ package com.andrewchokh.pcbuilder.persistence.entity.drive;
 
 import com.andrewchokh.pcbuilder.persistence.entity.enums.DriveFormFactor;
 
-public class HDDBuilder implements DriveBuildTemplate {
-    private int id;
-    private String name;
-    private DriveFormFactor formFactor;
-    private int memoryAmount; // In GB
+import java.util.Objects;
+import java.util.stream.Stream;
+
+public class HDDBuilder extends DriveBuilder {
     private int rotationSpeed;
 
     @Override
@@ -18,6 +17,18 @@ public class HDDBuilder implements DriveBuildTemplate {
     @Override
     public HDDBuilder Name(final String name) {
         this.name = name;
+        return this;
+    }
+
+    @Override
+    public HDDBuilder Brand(final String brand) {
+        this.brand = brand;
+        return this;
+    }
+
+    @Override
+    public HDDBuilder Price(final int price) {
+        this.price = price;
         return this;
     }
 
@@ -38,8 +49,19 @@ public class HDDBuilder implements DriveBuildTemplate {
         return this;
     }
 
+    public int getRotationSpeed() {
+        return this.rotationSpeed;
+    }
 
+    public boolean hasAllRequiredFieldsEntered() {
+        return Stream.of(id, name, brand, price, formFactor, memoryAmount, rotationSpeed)
+                .allMatch(Objects::nonNull);
+
+    }
+
+    @Override
     public HDD build() {
-        return new HDD(id, name, formFactor, memoryAmount, rotationSpeed);
+        if (!hasAllRequiredFieldsEntered()) throw new RuntimeException("One or several required fields are null");
+        return new HDD(id, name, brand, price, formFactor, memoryAmount, rotationSpeed);
     }
 }

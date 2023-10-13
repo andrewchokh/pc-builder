@@ -3,14 +3,10 @@ package com.andrewchokh.pcbuilder.persistence.entity.coolingdevice;
 import com.andrewchokh.pcbuilder.persistence.entity.enums.Socket;
 
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Stream;
 
-public class WaterCoolingBuilder implements CoolingDeviceBuilderTemplate {
-    private int id;
-    private String name;
-    private List<Socket> sockets;
-    private int fanAmount;
-    private String brand;
-
+public class WaterCoolingBuilder extends CoolingDeviceBuilder {
     @Override
     public WaterCoolingBuilder Id(final int id) {
         this.id = id;
@@ -20,6 +16,18 @@ public class WaterCoolingBuilder implements CoolingDeviceBuilderTemplate {
     @Override
     public WaterCoolingBuilder Name(final String name) {
         this.name = name;
+        return this;
+    }
+
+    @Override
+    public WaterCoolingBuilder Brand(final String brand) {
+        this.brand = brand;
+        return this;
+    }
+
+    @Override
+    public WaterCoolingBuilder Price(final int price) {
+        this.price = price;
         return this;
     }
 
@@ -35,13 +43,14 @@ public class WaterCoolingBuilder implements CoolingDeviceBuilderTemplate {
         return this;
     }
 
-    @Override
-    public WaterCoolingBuilder Brand(final String brand) {
-        this.brand = brand;
-        return this;
+    public boolean hasAllRequiredFieldsEntered() {
+        return Stream.of(id, name, brand, price, sockets, fanAmount)
+                .allMatch(Objects::nonNull);
     }
 
+    @Override
     public WaterCooling build() {
-        return new WaterCooling(id, name, sockets, fanAmount, brand);
+        if (!hasAllRequiredFieldsEntered()) throw new RuntimeException("One or several required fields are null");
+        return new WaterCooling(id, name, brand, price, sockets, fanAmount);
     }
 }
