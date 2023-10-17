@@ -8,6 +8,6 @@ public class Main {
         Constructor.getUserConfiguration();
         ComputerSystemUnit csu = Constructor.buildPC();
 
-        System.out.println(csu.getMotherboard().getName());
+        System.out.println("Your PC has been built!");
     }
 }
